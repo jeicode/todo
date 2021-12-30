@@ -15,7 +15,7 @@ function TodoProvider(props){
             loading, 
             error
             } = useLocalStorage("tasks", [])
-    const total = tasks.length
+    const totalTasks = tasks.length
     const totalTasksCompleted = tasks.filter( t =>  t.complete).length
     let cloneTasks = [...tasks]; 
     
@@ -46,7 +46,7 @@ function TodoProvider(props){
            loading,
            error,
            searchTasks,
-           total,
+           totalTasks,
            totalTasksCompleted,
            changeCompleteTask,
            delTask, 

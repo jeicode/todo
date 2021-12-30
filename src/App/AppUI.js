@@ -8,6 +8,7 @@ import { TodoItem } from '../components/TodoItem';
 import { Modal } from '../shared/modal/Modal'
 import { CreateButtom } from '../components/CreateButtom';
 import {TodoFormCreate} from '../components/TodoForm'
+import { Header } from '../shared/modal/header/Header';
 
 function AppUI() {
 
@@ -18,14 +19,26 @@ function AppUI() {
     changeCompleteTask,
     delTask,
     openModal,
-    setOpenModal
+    setOpenModal,
+    totalTasksCompleted,
+    totalTasks,
+    searchValue, 
+    setSearchValue,
   } = React.useContext(TodoContext)
 
   return (
     <>
       <article className="card">
-        <TodoCounter />
-        <TodoSearch />
+        <Header>
+          <TodoCounter 
+            totalTasks={totalTasks}
+            totalTasksCompleted={totalTasksCompleted}
+           />
+          <TodoSearch 
+            setSearchValue={setSearchValue}
+            searchValue={searchValue}
+          />
+        </Header>
 
         <TodoList>
 

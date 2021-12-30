@@ -1,14 +1,11 @@
 import React from "react";
-import {TodoContext} from "../context"
 
-function TodoCounter(){
+
+function TodoCounter({totalTasksCompleted, total}){
     return (
-        <TodoContext.Consumer>
-            {({totalTasksCompleted, total}) => (
-                <h1 className="text-center">What's Up you've complete {totalTasksCompleted} of {total} tasks</h1>
-
-            )}
-        </TodoContext.Consumer>
+        <>
+            <h1 className="text-center">What's Up you've complete {totalTasksCompleted} of {total} tasks</h1>
+        </>
     )
 }
 
