@@ -1,6 +1,6 @@
 import React from "react";
 
-function CreateButtom({setOpenModal}){
+function CreateButtom({setOpenModal, loading}){
 
     const createTask = () => {
         setOpenModal(true)
@@ -10,6 +10,7 @@ function CreateButtom({setOpenModal}){
         <button className="btn btn-primary w-100 mt-2" 
                 data-toggle="modal" 
                 data-target="#createModal"
+                disabled={loading}
                 type="buttom" 
                 onClick={() => createTask()}
                 id="sub_tareas">Crear tarea

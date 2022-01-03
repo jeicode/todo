@@ -1,10 +1,11 @@
 import React from "react";
 
 
-function TodoCounter({totalTasksCompleted, total}){
+function TodoCounter({totalTasksCompleted, totalTasks, loading}){
+    
     return (
         <>
-            <h1 className="text-center">What's Up you've complete {totalTasksCompleted} of {total} tasks</h1>
+            <h1 className="text-center">What's Up you've complete {totalTasksCompleted} of {totalTasks} tasks</h1>
         </>
     )
 }

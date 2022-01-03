@@ -1,16 +1,13 @@
 import React from "react"
 
-import { TodoContext } from "../context"
 import { Task } from "../models/tasks"
 import Swal from 'sweetalert2'
 
 
 
-function TodoFormCreate() {
+function TodoFormCreate({addTask, setOpenModal}) {
 
-    const {addTask, setOpenModal} = React.useContext(TodoContext)
     let valueTask = ''
-
 
     const onSubmit = (event) => {
         // preventDefault, not refresh page 

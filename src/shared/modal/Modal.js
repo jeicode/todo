@@ -1,11 +1,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { TodoContext } from '../../context';
 import './Modal.css';
 
-function Modal({ children, title }) {
+function Modal({ setOpenModal, title, children }) {
 
-  const {setOpenModal} = React.useContext(TodoContext)
   // ReactDOM.createPortal, pass data another component HTML, in this case "#modal"
   return ReactDOM.createPortal(
     <div className="ModalBackground">

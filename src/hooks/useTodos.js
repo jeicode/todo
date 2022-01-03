@@ -2,9 +2,7 @@ import React from "react";
 import { useLocalStorage } from "../hooks/useLocalStorage";
 
 
-const TodoContext = React.createContext()
-
-function TodoProvider(props){ 
+function useTodos(){ 
 
     let searchTasks = []
     const [searchValue, setSearchValue] = React.useState("")
@@ -13,7 +11,8 @@ function TodoProvider(props){
     const { item: tasks,
             saveItem: saveTasks,
             loading, 
-            error
+            error,
+            setNotifyChanges
             } = useLocalStorage("tasks", [])
     const totalTasks = tasks.length
     const totalTasksCompleted = tasks.filter( t =>  t.complete).length
@@ -40,9 +39,9 @@ function TodoProvider(props){
         cloneTasks.push(task)
         saveTasks("tasks", cloneTasks)
     }
-    return (
-        <TodoContext.Provider value={{
+    return {
            setSearchValue,
+           searchValue,
            loading,
            error,
            searchTasks,
@@ -52,15 +51,12 @@ function TodoProvider(props){
            delTask, 
            openModal,
            setOpenModal,
-           addTask
-        }}>
-
-        {props.children}
-            
-        </TodoContext.Provider>
-    )
-    
+           addTask,
+           setNotifyChanges,
+    }    
           
 }
 
-export {TodoContext, TodoProvider};
+export {useTodos};
+
+

@@ -1,15 +1,19 @@
 import React from 'react';
 
 
-
 function useLocalStorage(nameItem, initValue){
 
     const [error, setError] = React.useState(false)
     const [loading, setLoading] = React.useState(true)
     const [item, setItem] = React.useState(initValue)
     
+    const [notifyChanges, setNotifyChanges] = React.useState(false)
     // React.useEffect,  excute code just before render the App
     React.useEffect( () => {
+      // cada vez que recargue, muestre el loading
+      setLoading(true)
+      setNotifyChanges(false)
+
       setTimeout(() => {
         let localStorageItem = localStorage.getItem(nameItem)
         try {
@@ -30,7 +34,7 @@ function useLocalStorage(nameItem, initValue){
       setLoading(false)
         
       }, 2000);
-    }, [])
+    }, [notifyChanges])
   
     // save
     const saveItem = (itemName, newItem) => {
@@ -43,8 +47,9 @@ function useLocalStorage(nameItem, initValue){
       item,
       saveItem,
       loading,
-      error
+      error,
+      setNotifyChanges,
     }
-  }
+}
 
-  export {useLocalStorage}
+export {useLocalStorage}
