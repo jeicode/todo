@@ -12,7 +12,7 @@ function useTodos(){
             saveItem: saveTasks,
             loading, 
             error,
-            setNotifyChanges
+            sincronize: sincronizeTodos,
             } = useLocalStorage("tasks", [])
     const totalTasks = tasks.length
     const totalTasksCompleted = tasks.filter( t =>  t.complete).length
@@ -52,7 +52,7 @@ function useTodos(){
            openModal,
            setOpenModal,
            addTask,
-           setNotifyChanges,
+           sincronizeTodos,
     }    
           
 }

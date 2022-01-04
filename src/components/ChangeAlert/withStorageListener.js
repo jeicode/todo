@@ -3,23 +3,26 @@ import React from 'react';
 
 function withStorageListener(WrappedComponent) {
 
-    return ({setNotifyChanges}) => {
+    return (props) => {
 
-        const [storageChange, setStorageChange] = React.useState(false);
-
-        window.addEventListener('storage', (change) => {
-
-            if (change.key === "tasks"){
-              setStorageChange(true)
-            } 
+      React.useEffect(() => {
         
-          }) 
+        const onChange = (change) => {
+          if (change.key === "tasks") {
+            props.setStorageChange(true);
+          }
+        };
+  
+        window.addEventListener("storage", onChange);
+  
+        return () => {
+          window.removeEventListener("storage", onChange);
+        };
+      }, []);
     
         return (
           <WrappedComponent
-            storageChange={storageChange}
-            setStorageChange={setStorageChange}
-            setNotifyChanges={setNotifyChanges}
+            {...props}
           />
         );
     }

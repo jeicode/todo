@@ -11,9 +11,6 @@ function useLocalStorage(nameItem, initValue){
     // React.useEffect,  excute code just before render the App
     React.useEffect( () => {
       // cada vez que recargue, muestre el loading
-      setLoading(true)
-      setNotifyChanges(false)
-
       setTimeout(() => {
         let localStorageItem = localStorage.getItem(nameItem)
         try {
@@ -32,23 +29,29 @@ function useLocalStorage(nameItem, initValue){
         setError(true)
       }
       setLoading(false)
+      setNotifyChanges(false)
         
       }, 2000);
     }, [notifyChanges])
+
+
+    const sincronize = () => {
+      setLoading(true)
+      setNotifyChanges(true)
+    }
   
     // save
     const saveItem = (itemName, newItem) => {
       localStorage.setItem(itemName, JSON.stringify(newItem))
       setItem(newItem)
     }
-    
-  
+
     return {
       item,
       saveItem,
       loading,
       error,
-      setNotifyChanges,
+      sincronize,
     }
 }
 

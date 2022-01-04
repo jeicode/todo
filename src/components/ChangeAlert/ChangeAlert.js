@@ -1,29 +1,31 @@
 import React from 'react';
 import { withStorageListener } from './withStorageListener';
 
-function ChangeAlert({ storageChange, setStorageChange, setNotifyChanges}) {
+function ChangeAlert({ storageChange, setStorageChange, sincronizeTodos}) {
 
   if (storageChange) {
-    return <div className="alert alert-secondary mt-4" role="alert">
+    return (
+      <div className="alert alert-secondary mb-2 card">
 
         <div className='d-flex align-items-center justify-content-between'>
             there were some changes in your list tasks
             <button 
                 type="button" 
                 className="btn btn-primary"
-                onClick={() => notifyChanges(setStorageChange, setNotifyChanges)}
+                onClick={() => sincronizeItems(setStorageChange, sincronizeTodos)}
                 >
                 Refresh changes
             </button>
         </div>
-  </div>
+      </div>
+    )
   } 
   return null
 }
 
-const notifyChanges = (setStorageChange, setNotifyChanges) => {
+const sincronizeItems = (setStorageChange, sincronizeTodos) => {
   setStorageChange(false)
-  setNotifyChanges(true)
+  sincronizeTodos()
 }
 
 const ChangeAlertWithStorageListener = withStorageListener(ChangeAlert);

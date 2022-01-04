@@ -25,6 +25,8 @@ import { ChangeAlertWithStorageListener } from '../components/ChangeAlert/Change
 function App() {
 
   const descErrorLoad = 'Upsss... hubo un al cargar las tareas!'
+  const [storageChange, setStorageChange] = React.useState(false);
+
 
   const { 
     loading,
@@ -39,13 +41,16 @@ function App() {
     searchValue, 
     setSearchValue,
     addTask,
-    setNotifyChanges,
+    sincronizeTodos,
   } = useTodos()
 
 
+
   return (
-    <div className={`card ${loading && 'opacity-50'}`}>
-      <Header loading={loading}>
+    <>
+     <div className={`card ${loading && 'opacity-50'}`} disabled={storageChange}>
+      <Header 
+        loading={loading}>
         <TodoCounter 
           totalTasks={totalTasks}
           totalTasksCompleted={totalTasksCompleted}
@@ -100,11 +105,17 @@ function App() {
             />
         </Modal>
       }
-
-      <ChangeAlertWithStorageListener
-        setNotifyChanges={setNotifyChanges}
-      />
     </div>
+    
+
+    <ChangeAlertWithStorageListener
+        storageChange={storageChange}
+        setStorageChange={setStorageChange}
+        sincronizeTodos={sincronizeTodos}
+      />
+    
+    </>
+   
   )
 
 }
