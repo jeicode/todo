@@ -55,4 +55,23 @@ function useLocalStorage(nameItem, initValue){
     }
 }
 
-export {useLocalStorage}
+function useStorageListener(setStorageChange) {
+
+  React.useEffect(() => {
+    
+    const onChange = (change) => {
+      if (change.key === "tasks") {
+        setStorageChange(true)
+      }
+    };
+
+    window.addEventListener("storage", onChange);
+
+    return () => {
+      window.removeEventListener("storage", onChange);
+    };
+  }, []);
+  
+}
+
+export {useLocalStorage, useStorageListener}

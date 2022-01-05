@@ -1,7 +1,9 @@
 import React from 'react';
-import { withStorageListener } from './withStorageListener';
+import { useStorageListener } from '../../hooks/useLocalStorage';
 
 function ChangeAlert({ storageChange, setStorageChange, sincronizeTodos}) {
+
+  useStorageListener(setStorageChange)
 
   if (storageChange) {
     return (
@@ -28,6 +30,4 @@ const sincronizeItems = (setStorageChange, sincronizeTodos) => {
   sincronizeTodos()
 }
 
-const ChangeAlertWithStorageListener = withStorageListener(ChangeAlert);
-
-export { ChangeAlertWithStorageListener };
+export { ChangeAlert };

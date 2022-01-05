@@ -8,6 +8,7 @@ import { TodoItem } from '../components/TodoItem';
 import { CreateButtom } from '../components/CreateButtom';
 import { EmptySearch, EmptyTodos } from '../components/EmptyTodos';
 import {TodoFormCreate} from '../components/TodoForm'
+import { ChangeAlert } from '../components/ChangeAlert/ChangeAlert';
 
 // Shared
 import { Modal } from '../shared/modal/Modal'
@@ -20,7 +21,6 @@ import { useTodos } from '../hooks/useTodos';
 
 // Css
 import './App.css'
-import { ChangeAlertWithStorageListener } from '../components/ChangeAlert/ChangeAlert';
 
 function App() {
 
@@ -108,7 +108,7 @@ function App() {
     </div>
     
 
-    <ChangeAlertWithStorageListener
+    <ChangeAlert
         storageChange={storageChange}
         setStorageChange={setStorageChange}
         sincronizeTodos={sincronizeTodos}
